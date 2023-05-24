@@ -9,18 +9,51 @@ filter_letter_o = 'o'
 # Expected output: ['coffee', 'soda water']
 filter_letter_t = 't'
 # Expected output: ['tea', 'water', 'soda water']
+# Notes: Used the select because it returns a new array made up of elements in the original array that return a true value in the provided code block
+def filter_arr (arr, str)
+    arr.select { |arr| arr.include?(str)}
+end
+
+
 
 
 # -------------------2) Create a method that takes in a hash and returns one array with all the hash values at their own index and in alphabetical order. No nested arrays. Use the test variable provided.
 # HINT: Google 'ruby get rid of nested arrays'
 
-us_states = { northwest: ['Washington', 'Oregon', 'Idaho'], southwest: ['California', 'Arizona', 'Nevada'], notheast: ['Maine', 'New Hampshire', 'Rhode Island'] }
+us_states = { northwest: ['Washington', 'Oregon', 'Idaho'], southwest: ['California', 'Arizona', 'Nevada'], northeast: ['Maine', 'New Hampshire', 'Rhode Island'] }
 # Expected output: ['Arizona', 'California', 'Idaho', 'Maine', 'Nevada', 'New Hampshire', 'Oregon', 'Rhode Island', 'Washington'] 
+def single_arr hash
+    new_hash = hash[:northwest] + hash[:northeast] + hash[:southwest]
+    new_hash.sort
+end
+
 
 
 # --------------------3a) Create a class called Bike that is initialized with a model, wheels, and current_speed. The default number of wheels is 2. The current_speed should start at 0. Create a bike_info method that returns a sentence with all the data from the bike object.
 
 # Expected output example: 'The Trek bike has 2 wheels and is going 0 mph.'
+
+class Bike
+    attr_accessor :model, :wheels, :current_speed
+    def initialize (model, wheels)
+        @model = model
+        @current_speed = 0
+        @wheels = wheels
+    end
+    def get_bike
+        "This #{@model} bike has #{@wheels} wheels and is going #{@current_speed} mph."
+    end
+    def pedal_faster num
+        @current_speed += num
+    end
+    def brake num
+        if num < @current_speed
+            @current_speed -= num
+        else
+            @current_speed = 0
+        end
+    end
+end
 
 
 
